@@ -1,0 +1,58 @@
+{
+  "id": "bigquery",
+  "description": "BigQuery Plugin for logging request and response data",
+  "credentials": {
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "label": "Project ID",
+        "description": "Your Google Cloud Project ID",
+        "encrypted": false
+      },
+      "clientEmail": {
+        "type": "string",
+        "label": "Client Email",
+        "description": "Service account client email",
+        "encrypted": false
+      },
+      "privateKey": {
+        "type": "string",
+        "label": "Private Key",
+        "description": "Service account private key",
+        "encrypted": true
+      }
+    },
+    "required": ["projectId", "clientEmail", "privateKey"]
+  },
+  "functions": [
+    {
+      "name": "BigQueryLogger",
+      "id": "bigQueryLogger",
+      "supportedHooks": ["endHook"],
+      "type": "logger",
+      "description": [
+        {
+          "type": "subHeading",
+          "text": "Log request and response data to BigQuery"
+        }
+      ],
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "datasetId": {
+            "type": "string",
+            "label": "Dataset ID",
+            "description": "The BigQuery dataset ID to log data to"
+          },
+          "tableId": {
+            "type": "string",
+            "label": "Table ID",
+            "description": "The BigQuery table ID to log data to"
+          }
+        },
+        "required": ["datasetId", "tableId"]
+      }
+    }
+  ]
+}
